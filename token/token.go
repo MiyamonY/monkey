@@ -29,5 +29,5 @@ type TokenType string
 
 type Token struct {
 	Type    TokenType
-	LIteral string
+	Literal string
 }
