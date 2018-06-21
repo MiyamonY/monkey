@@ -34,6 +34,8 @@ const (
 	IF        = "IF"
 	ELSE      = "ELSE"
 	RETURN    = "RETURN"
+	EQ        = "=="
+	NEQ       = "!="
 )
 
 type TokenType string
