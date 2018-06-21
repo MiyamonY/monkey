@@ -29,6 +29,11 @@ const (
 	SEMICOLON = ";"
 	FUNCTION  = "FUNCTION"
 	LET       = "LET"
+	TRUE      = "true"
+	FALSE     = "false"
+	IF        = "IF"
+	ELSE      = "ELSE"
+	RETURN    = "RETURN"
 )
 
 type TokenType string
@@ -39,8 +44,13 @@ type Token struct {
 }
 
 var keywards = map[string]TokenType{
-	"fn":  FUNCTION,
-	"let": LET,
+	"fn":     FUNCTION,
+	"let":    LET,
+	"true":   TRUE,
+	"false":  FALSE,
+	"if":     IF,
+	"else":   ELSE,
+	"return": RETURN,
 }
 
 func LookupIdent(ident string) TokenType {
