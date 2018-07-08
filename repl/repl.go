@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"io"
 
+	"github.com/MiyamonY/monkey/evaluator"
 	"github.com/MiyamonY/monkey/lexer"
 	"github.com/MiyamonY/monkey/parser"
 )
@@ -34,8 +35,10 @@ func Start(in io.Reader, out io.Writer) {
 			continue
 		}
 
-		_, _ = io.WriteString(out, program.String())
-		_, _ = io.WriteString(out, "\n")
+		if evaluated := evaluator.Eval(program); evaluated != nil {
+			_, _ = io.WriteString(out, evaluated.Inspect())
+			_, _ = io.WriteString(out, "\n")
+		}
 	}
 }
 
