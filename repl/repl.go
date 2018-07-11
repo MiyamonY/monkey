@@ -13,6 +13,7 @@ import (
 
 	"github.com/MiyamonY/monkey/evaluator"
 	"github.com/MiyamonY/monkey/lexer"
+	"github.com/MiyamonY/monkey/object"
 	"github.com/MiyamonY/monkey/parser"
 )
 
@@ -20,6 +21,8 @@ const PROMPT = ">> "
 
 func Start(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
+	env := object.NewEnvironment()
+
 	for {
 		fmt.Printf(PROMPT)
 		scanned := scanner.Scan()
@@ -35,7 +38,7 @@ func Start(in io.Reader, out io.Writer) {
 			continue
 		}
 
-		if evaluated := evaluator.Eval(program); evaluated != nil {
+		if evaluated := evaluator.Eval(program, env); evaluated != nil {
 			_, _ = io.WriteString(out, evaluated.Inspect())
 			_, _ = io.WriteString(out, "\n")
 		}
